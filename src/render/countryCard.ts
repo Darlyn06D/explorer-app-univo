@@ -4,7 +4,7 @@ export function renderCountryCard(country: Country): string {
   const name = e(country.names.common);
   const code = country.codes.alpha_2;
   const url = `#/country/${encodeURIComponent(code)}`;
-  const focus = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500";
+  const focus = "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500";
   return `<article class="@container group overflow-hidden rounded-lg border border-neutral-300 bg-neutral-0 shadow-sm transition duration-200 motion-reduce:transition-none hover:-translate-y-1 hover:shadow-lg focus-within:ring-2 focus-within:ring-blue-500">
   <div class="flex h-full flex-col @min-[20rem]:flex-row">
     <img class="aspect-3/2 w-full shrink-0 bg-neutral-50 object-contain @min-[20rem]:aspect-auto @min-[20rem]:w-2/5" src="${e(country.flag.url_svg || `${import.meta.env.BASE_URL}placeholder.svg`)}" alt="${e(getFlagDescription(country))}" loading="lazy" data-flag>

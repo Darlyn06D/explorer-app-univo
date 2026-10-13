@@ -1,25 +1,29 @@
 # Explorer App — UNIVO
 
-Aplicación de consulta de países y territorios desarrollada con Vanilla TypeScript para Diseño Web Adaptable. Permite buscar por nombre, combinar la búsqueda con una región y abrir el detalle sin recargar el documento.
+Aplicación de consulta de países y territorios desarrollada para Diseño Web Adaptable con Vite, Vanilla TypeScript y Tailwind CSS v4. Permite buscar países, filtrar por región y consultar sus detalles sin recargar la página.
 
-## Ejecutar
+## Instalación y ejecución
 
-Requisitos: Node.js 22.12 o superior (también Node 24), Git y pnpm 11.
+Requisitos: Node.js 22.12 o superior y pnpm 11.
 
 ```bash
+git clone https://github.com/Darlyn06D/explorer-app-univo.git
+cd explorer-app-univo
 npm install -g pnpm@11
 pnpm install
 pnpm dev
 ```
 
-Abre la dirección indicada por Vite. Para construir y revisar la versión de producción:
+Abre la dirección que muestra Vite en la terminal.
+
+Para compilar y revisar la aplicación:
 
 ```bash
 pnpm build
 pnpm preview
 ```
 
-Para comprobar la validación de datos, los filtros, el debounce y los estados:
+Para ejecutar las pruebas incluidas:
 
 ```bash
 pnpm test
@@ -27,60 +31,89 @@ pnpm build
 pnpm test:dom
 ```
 
-## Tecnologías y organización
+En PowerShell, si se bloquea la ejecución de scripts, utiliza `pnpm.cmd` en lugar de `pnpm`.
 
-Vite, TypeScript y Tailwind CSS v4 con el plugin oficial de Vite. Los tokens de color, radios y espaciado están en `src/style.css`, dentro de `@theme`.
+## Tecnologías
+
+- Vite.
+- Vanilla TypeScript.
+- Tailwind CSS v4 y su plugin oficial para Vite.
+- Design tokens definidos mediante `@theme`.
+- GitHub y Vercel.
+
+## Organización del proyecto
 
 | Ruta | Responsabilidad |
 | --- | --- |
-| `src/api/countries.ts` | Petición HTTP, comprobación de respuesta y validación/normalización del JSON. |
-| `src/types/` | Contratos de país y detalle, incluyendo población ausente. |
-| `src/utils/` | Formato, filtrado puro, escape de texto y debounce cancelable. |
-| `src/render/` | Tarjetas, grid, detalle y estados visuales. |
-| `src/main.ts` | Eventos, carga inicial, navegación y actualización del DOM. |
-| `public/data/countries.json` | Datos estáticos facilitados por la docente. |
+| `src/api/` | Peticiones HTTP y validación de los datos recibidos. |
+| `src/types/` | Interfaces de países y datos de detalle. |
+| `src/utils/` | Formateo, filtrado y debounce. |
+| `src/render/` | Tarjetas, listado, detalle y estados de interfaz. |
+| `src/main.ts` | Coordinación de carga, eventos y navegación. |
+| `public/data/countries.json` | Fuente de datos facilitada por la docente. |
 
 ## Fuente de datos
 
-Se utiliza el JSON facilitado por la docente, alternativa autorizada en S22 ante límites de consultas de REST Countries. Contiene 254 registros de países y territorios; no se actualiza automáticamente. Se carga mediante `fetch`, se comprueba `response.ok` y se valida la estructura en tiempo de ejecución. No requiere una clave ni variables de entorno. Las banderas siguen siendo recursos externos y necesitan conexión; si fallan se muestra una imagen de respaldo.
+Se utiliza el archivo JSON facilitado por la docente, alternativa permitida en el laboratorio ante las limitaciones de consultas de REST Countries.
 
-La búsqueda utiliza los nombres de la fuente, mayoritariamente en inglés (por ejemplo, `Belize`). Las etiquetas de región de la interfaz están en español. Algunos territorios no tienen código de dos letras y muestran «Detalle no disponible».
+El archivo contiene 254 países y territorios y se obtiene mediante `fetch`. La aplicación comprueba `response.ok`, valida la estructura recibida y maneja los errores. No requiere claves ni variables de entorno.
 
-## Funciones
+Los datos son una copia estática y no se actualizan automáticamente. Las banderas utilizan recursos externos; cuando una imagen no está disponible, se muestra una imagen de respaldo.
 
-- Búsqueda parcial sin distinguir mayúsculas, con limpieza de espacios.
-- Región y búsqueda combinadas sin modificar el conjunto original.
-- Debounce de 300 ms en búsqueda; selector inmediato.
-- Ocho skeletons durante la carga, estado vacío, error y reintento.
-- Detalle mediante `#/country/SV`, regreso y navegación Atrás/Adelante.
-- Menú móvil accesible, foco visible, controles táctiles y respaldo de banderas.
-- Grid responsive, Container Queries y títulos fluidos con `clamp()`.
+Los nombres proceden de la fuente de datos y están mayoritariamente en inglés. Algunos territorios no cuentan con un código válido para abrir su detalle.
 
-## Versión Vanilla TypeScript
+## Funcionalidades
 
-Etiqueta de entrega: `entrega-lab-vanilla`.
+- Tarjetas con nombre, bandera, población, región y capital.
+- Tratamiento de datos ausentes.
+- Búsqueda sin distinguir mayúsculas y minúsculas.
+- Búsqueda y región combinadas.
+- Debounce de 300 ms en el buscador.
+- Actualización inmediata al cambiar de región.
+- Ocho tarjetas skeleton durante la carga.
+- Mensajes de resultados vacíos y errores.
+- Botón para reintentar la carga.
+- Navegación al detalle mediante hash routing.
+- Diseño adaptable y navegación con teclado.
+- Container Queries y tipografía fluida con `clamp()`.
 
-Después de publicar el repositorio, agrega aquí su enlace directo: `https://github.com/TU_USUARIO/TU_REPOSITORIO/tree/entrega-lab-vanilla`. Este enlace es una plantilla y debe sustituirse por el real.
+## Versión Vanilla TypeScript del laboratorio
 
-## Publicación y recorrido del cambio
+La rama `fix/foco-enlace-detalle` conserva una versión identificada de la aplicación en Vanilla TypeScript:
 
-Configuración Vercel: framework **Vite**, build **pnpm build**, salida **dist**, rama de producción **main**. No configurar una API key para esta fuente JSON.
+https://github.com/Darlyn06D/explorer-app-univo/tree/fix/foco-enlace-detalle
 
-Completar después de publicar y revisar realmente:
+Para ejecutarla:
 
-- Producción: pendiente.
-- PR integrado: pendiente.
-- Preview revisada: pendiente.
-- Revisión: pendiente de registrar en el PR antes del merge.
+```bash
+git clone --branch fix/foco-enlace-detalle https://github.com/Darlyn06D/explorer-app-univo.git
+cd explorer-app-univo
+pnpm install
+pnpm dev
+```
 
-El procedimiento está en [GUIA-ENTREGA.md](docs/GUIA-ENTREGA.md). No presentar enlaces pendientes como evidencia de despliegue.
+## GitHub Flow y despliegue
 
-## Capturas
+- Producción: https://explorer-app-univo.vercel.app/
+- Pull Request integrado: https://github.com/Darlyn06D/explorer-app-univo/pull/1
+- Preview del cambio: https://explorer-app-univo-jb3c002bk-darlyn06d.vercel.app/
 
-Las capturas visuales están pendientes de tomar en el navegador. Usa los pasos de `docs/GUIA-ENTREGA.md`. No se incluyen evidencias ficticias de Vercel ni de GitHub.
+Configuración de Vercel: framework Vite, comando `pnpm build`, carpeta de salida `dist` y rama de producción `main`.
 
-## Créditos
+La mejora se realizó en la rama `fix/foco-enlace-detalle`, con el commit `fix: mejorar el foco visible del enlace de detalle`.
 
-Darlyn Dinora Andrade Zúñiga — U20240714.
-Universidad de Oriente, Ingeniería en Desarrollo de Software.
-Se tomó como referencia el material y el proyecto docente de Karla Cecilia Cruz de González, [ExplorerApp](https://github.com/Kcruz080492/ExplorerApp). Se reorganizó y corrigió la coordinación, se añadió validación del JSON, debounce modular y verificaciones de comportamiento.
+Se aumentó la separación del contorno de foco de 2 a 4 en el enlace de detalle para facilitar su identificación al navegar con teclado.
+
+La revisión individual quedó registrada como comentario en el PR antes de integrarlo. Posteriormente se comprobó el foco mediante Tab en la preview y en producción. También se verificó en producción la búsqueda de El Salvador, su combinación con Europa y América, y la apertura del detalle.
+
+Se configuró una regla de protección para `main` que requiere Pull Request, siguiendo la alternativa de trabajo individual sin aprobación externa.
+
+## Autoría y referencia
+
+Darlyn Dinora Andrade Zuniga — U20240714.
+
+Universidad de Oriente — Ingeniería en Desarrollo de Software.
+
+Proyecto desarrollado a partir de los contenidos y recursos de Explorer App proporcionados en clase:
+
+https://github.com/Kcruz080492/ExplorerApp

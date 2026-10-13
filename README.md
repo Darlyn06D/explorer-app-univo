@@ -117,3 +117,9 @@ Universidad de Oriente — Ingeniería en Desarrollo de Software.
 Proyecto desarrollado a partir de los contenidos y recursos de Explorer App proporcionados en clase:
 
 https://github.com/Kcruz080492/ExplorerApp
+
+
+## Captura de la aplicación
+
+Foco visible del enlace «Ver más» comprobado en producción.
+<img width="1600" height="1000" alt="WhatsApp Image 2026-10-13 at 12 28 10 AM" src="https://github.com/user-attachments/assets/974c6007-20bb-4d4c-97ad-b1cbb7c275fc" />
